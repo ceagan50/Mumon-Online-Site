@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumon Construction Uganda | Our Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #ff9800;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --commercial-color: #2196F3;
+            --industrial-color: #4CAF50;
+            --residential-color: #9C27B0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Projects Header */
+        .projects-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .projects-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .projects-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Project Filter */
+        .project-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: #f0f0f0;
+            color: var(--dark-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Projects Grid */
+        .projects-container {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #666;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .residential-badge {
+            background-color: var(--residential-color);
+        }
+        
+        .commercial-badge {
+            background-color: var(--commercial-color);
+        }
+        
+        .industrial-badge {
+            background-color: var(--industrial-color);
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .project-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .project-info .location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .project-info .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-tag {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .view-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .view-btn:hover {
+            background: #c2185b;
+        }
+        
+        /* Project Categories Sections */
+        .category-section {
+            padding: 5rem 2rem;
+        }
+        
+        .residential-section {
+            background-color: #f9f0ff;
+        }
+        
+        .commercial-section {
+            background-color: #e3f2fd;
+        }
+        
+        .industrial-section {
+            background-color: #e8f5e9;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .testimonial-card .quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-card .client {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .testimonial-card .position {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* Awards Section */
+        .awards-section {
+            padding: 5rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+        
+        .award-card {
+            padding: 1.5rem;
+        }
+        
+        .award-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .award-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .award-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cta-btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid, .testimonial-grid, .awards-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MUMON<span>CONSTRUCT</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Projects Header -->
+    <section class="projects-header">
+        <div>
+            <h1>Our Construction Portfolio</h1>
+            <p>Explore our diverse range of completed projects across Uganda, showcasing excellence in residential, commercial, and industrial construction.</p>
+        </div>
+    </section>
+    
+    <!-- Project Filter -->
+    <div class="project-filter">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="residential">Residential</button>
+        <button class="filter-btn" data-filter="commercial">Commercial</button>
+        <button class="filter-btn" data-filter="industrial">Industrial</button>
+    </div>
+    
+    <!-- Residential Projects -->
+    <section class="category-section residential-section">
+        <div class="projects-container">
+            <h2 class="section-title">Luxury Residential Projects</h2>
+            <p class="section-subtitle">Discover our premium residential developments that combine modern design with comfort and sustainability.</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card residential">
+                    <span class="project-badge residential-badge">Residential</span>
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pearl Heights Villas" class="project-img">
+                    <div class="project-info">
+                        <h3>Pearl Heights Villas</h3>
+                        <p>Exclusive gated community with 15 luxury villas in Kampala's most prestigious neighborhood.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kololo, Kampala</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">5-7 Bedrooms</span>
+                            <span class="feature-tag">Smart Homes</span>
+                            <span class="feature-tag">Swimming Pools</span>
+                            <span class="feature-tag">24/7 Security</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card residential">
+                    <span class="project-badge residential-badge">Residential</span>
+                    <img src="house.png">
+                    <div class="project-info">
+                        <h3>Lakeside Apartments</h3>
+                        <p>Modern apartment complex with stunning views of Lake Victoria in Entebbe.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Entebbe, Uganda</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">50 Units</span>
+                            <span class="feature-tag">Lake Views</span>
+                            <span class="feature-tag">Fitness Center</span>
+                            <span class="feature-tag">Underground Parking</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card residential">
+                    <span class="project-badge residential-badge">Residential</span>
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Green Valley Estates" class="project-img">
+                    <div class="project-info">
+                        <h3>Green Valley Estates</h3>
+                        <p>Sustainable housing development with eco-friendly features in Jinja.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jinja, Uganda</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">Solar Powered</span>
+                            <span class="feature-tag">Rainwater Harvesting</span>
+                            <span class="feature-tag">Community Gardens</span>
+                            <span class="feature-tag">3-4 Bedrooms</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Commercial Projects -->
+    <section class="category-section commercial-section">
+        <div class="projects-container">
+            <h2 class="section-title">Commercial Developments</h2>
+            <p class="section-subtitle">Our commercial projects include shopping malls, office complexes, and mixed-use developments across Uganda.</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card commercial">
+                    <span class="project-badge commercial-badge">Commercial</span>
+                    <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Victoria Mall" class="project-img">
+                    <div class="project-info">
+                        <h3>Victoria Mall</h3>
+                        <p>Ultra-modern shopping mall with 150 retail outlets, food court, and entertainment center.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Kampala Road, Kampala</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">45,000 sqm</span>
+                            <span class="feature-tag">150 Stores</span>
+                            <span class="feature-tag">Cinema Complex</span>
+                            <span class="feature-tag">Underground Parking</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card commercial">
+                    <span class="project-badge commercial-badge">Commercial</span>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nile Business Plaza" class="project-img">
+                    <div class="project-info">
+                        <h3>Nile Business Plaza</h3>
+                        <p>Class A office space with premium amenities in Kampala's central business district.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nakasero, Kampala</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">20 Floors</span>
+                            <span class="feature-tag">LEED Certified</span>
+                            <span class="feature-tag">Conference Center</span>
+                            <span class="feature-tag">Fiber Optic Ready</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card commercial">
+                    <span class="project-badge commercial-badge">Commercial</span>
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Entebbe Airport Hotel" class="project-img">
+                    <div class="project-info">
+                        <h3>Entebbe Airport Hotel</h3>
+                        <p>5-star luxury hotel with 200 rooms adjacent to Entebbe International Airport.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Entebbe, Uganda</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">200 Rooms</span>
+                            <span class="feature-tag">Conference Facilities</span>
+                            <span class="feature-tag">Rooftop Pool</span>
+                            <span class="feature-tag">Airport Shuttle</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industrial Projects -->
+    <section class="category-section industrial-section">
+        <div class="projects-container">
+            <h2 class="section-title">Industrial Complexes</h2>
+            <p class="section-subtitle">State-of-the-art industrial facilities designed for efficiency and productivity.</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card industrial">
+                    <span class="project-badge industrial-badge">Industrial</span>
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Kampala Industrial Park" class="project-img">
+                    <div class="project-info">
+                        <h3>Kampala Industrial Park</h3>
+                        <p>100-acre industrial complex with manufacturing facilities and warehouses.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Namanve, Kampala</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">100 Acres</span>
+                            <span class="feature-tag">20 Factories</span>
+                            <span class="feature-tag">Rail Access</span>
+                            <span class="feature-tag">Power Substation</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card industrial">
+                    <span class="project-badge industrial-badge">Industrial</span>
+                    <img src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Jinja Textile Mill" class="project-img">
+                    <div class="project-info">
+                        <h3>Jinja Textile Mill</h3>
+                        <p>Modern textile manufacturing facility with sustainable production processes.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jinja, Uganda</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">50,000 sqm</span>
+                            <span class="feature-tag">Water Treatment</span>
+                            <span class="feature-tag">Solar Power</span>
+                            <span class="feature-tag">500 Employees</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card industrial">
+                    <span class="project-badge industrial-badge">Industrial</span>
+                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mbarara Food Processing Plant" class="project-img">
+                    <div class="project-info">
+                        <h3>Mbarara Food Processing Plant</h3>
+                        <p>Advanced food processing facility serving Uganda's agricultural sector.</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mbarara, Uganda</span>
+                        </div>
+                        <div class="features">
+                            <span class="feature-tag">Cold Storage</span>
+                            <span class="feature-tag">Processing Lines</span>
+                            <span class="feature-tag">Quality Labs</span>
+                            <span class="feature-tag">Export Certified</span>
+                        </div>
+                        <a href="#" class="view-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Hear from our satisfied clients across Uganda</p>
+        
+        <div class="testimonial-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="quote">"Mumon Construction delivered our shopping mall ahead of schedule and under budget. Their attention to detail is unmatched in Uganda's construction industry."</div>
+                <div class="client">Dr. Robert Mugisha</div>
+                <div class="position">CEO, Victoria Mall Group</div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="quote">"The industrial park they built for us has transformed our manufacturing capabilities. Their engineers solved complex challenges with innovative solutions."</div>
+                <div class="client">Sarah Nalwoga</div>
+                <div class="position">Director, Uganda Textiles Ltd</div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="quote">"Our luxury villas were constructed with the highest quality materials and craftsmanship. Mumon's team became true partners in bringing our vision to life."</div>
+                <div class="client">James Kato</div>
+                <div class="position">Developer, Pearl Heights</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Awards Section -->
+    <section class="awards-section">
+        <h2 class="section-title">Our Awards & Recognition</h2>
+        <p class="section-subtitle">Recognized for excellence in construction across East Africa</p>
+        
+        <div class="awards-grid">
+            <!-- Award 1 -->
+            <div class="award-card">
+                <i class="fas fa-award"></i>
+                <h3>Best Commercial Project 2023</h3>
+                <p>Uganda Construction Excellence Awards</p>
+            </div>
+            
+            <!-- Award 2 -->
+            <div class="award-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Green Building Award</h3>
+                <p>East Africa Sustainable Development Forum</p>
+            </div>
+            
+            <!-- Award 3 -->
+            <div class="award-card">
+                <i class="fas fa-medal"></i>
+                <h3>Contractor of the Year</h3>
+                <p>Uganda Engineers Board 2022</p>
+            </div>
+            
+            <!-- Award 4 -->
+            <div class="award-card">
+                <i class="fas fa-star"></i>
+                <h3>Safety Excellence</h3>
+                <p>Occupational Health & Safety Association</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="section-title">By The Numbers</h2>
+        <p class="section-subtitle">Our impact on Uganda's construction landscape</p>
+        
+        <div class="stats-grid">
+            <!-- Stat 1 -->
+            <div class="stat-card">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            
+            <!-- Stat 2 -->
+            <div class="stat-card">
+                <div class="stat-number">5M+</div>
+                <div class="stat-label">Square Meters Built</div>
+            </div>
+            
+            <!-- Stat 3 -->
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            
+            <!-- Stat 4 -->
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Build Your Vision?</h2>
+            <p>Whether you're planning a residential, commercial, or industrial project, our team of experts is ready to bring your ideas to life with Ugandan craftsmanship and international standards.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn cta-btn-primary">Get a Free Consultation</a>
+                <a href="tel:+256700123456" class="cta-btn cta-btn-secondary">Call Us Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mumon Construction</h3>
+                <p>Building Uganda's future with excellence, innovation, and sustainable practices since 2003.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Services</h3>
+                <a href="#">Residential Construction</a>
+                <a href="#">Commercial Buildings</a>
+                <a href="#">Industrial Facilities</a>
+                <a href="#">Renovations</a>
+                <a href="#">Project Management</a>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Plot 42, Yusuf Lule Road, Kampala</p>
+                <p><i class="fas fa-phone"></i> +256 700 123 456</p>
+                <p><i class="fas fa-envelope"></i> info@mumonconstruction.ug</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Mumon Construction Uganda. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.classList.contains(filterValue)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Animate stats counting up
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statsSection = document.querySelector('.stats-section');
+            
+            function animateStats() {
+                const sectionPosition = statsSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (sectionPosition < screenPosition) {
+                    statNumbers.forEach(stat => {
+                        const target = +stat.innerText.replace('+', '').replace('M', '000000').replace('%', '');
+                        const increment = target / 100;
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                clearInterval(timer);
+                                current = target;
+                                if (stat.innerText.includes('+')) {
+                                    stat.innerText = target + '+';
+                                } else if (stat.innerText.includes('M')) {
+                                    stat.innerText = (target / 1000000) + 'M+';
+                                } else if (stat.innerText.includes('%')) {
+                                    stat.innerText = target + '%';
+                                } else {
+                                    stat.innerText = target;
+                                }
+                                return;
+                            }
+                            if (stat.innerText.includes('M')) {
+                                stat.innerText = Math.floor(current / 1000000) + 'M+';
+                            } else if (stat.innerText.includes('%')) {
+                                stat.innerText = Math.floor(current) + '%';
+                            } else {
+                                stat.innerText = Math.floor(current);
+                            }
+                        }, 10);
+                    });
+                    
+                    // Remove event listener after animation
+                    window.removeEventListener('scroll', animateStats);
+                }
+            }
+            
+            window.addEventListener('scroll', animateStats);
+        });
+    </script>
+</body>
+</html>
